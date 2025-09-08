@@ -1,19 +1,19 @@
 {
-  "name": "n8n-nodes-<...>",
+  "name": "n8n-nodes-keboola",
   "version": "0.1.0",
-  "description": "",
+  "description": "n8n node to interact with Keboola Storage APIs & MCP Server",
   "keywords": [
     "n8n-community-node-package"
   ],
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://www.keboola.com",
   "author": {
-    "name": "",
-    "email": ""
+    "name": "Radek Tomasek",
+    "email": "radek.tomasek@keboola.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/<...>/n8n-nodes-<...>.git"
+    "url": "https://github.com/keboola/n8n-nodes-keboola.git"
   },
   "engines": {
     "node": ">=20.15"
@@ -33,15 +33,14 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/ExampleCredentialsApi.credentials.js",
-      "dist/credentials/HttpBinApi.credentials.js"
+      "dist/credentials/KeboolaTokenApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/ExampleNode/ExampleNode.node.js",
-      "dist/nodes/HttpBin/HttpBin.node.js"
+      "dist/nodes/Keboola/Keboola.node.js"
     ]
   },
   "devDependencies": {
+    "@types/node": "^24.0.13",
     "@typescript-eslint/parser": "~8.32.0",
     "eslint": "^8.57.0",
     "eslint-plugin-n8n-nodes-base": "^1.16.3",
@@ -51,5 +50,8 @@
   },
   "peerDependencies": {
     "n8n-workflow": "*"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.844.0"
   }
 }
