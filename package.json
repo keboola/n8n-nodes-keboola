@@ -1,35 +1,48 @@
 {
-  "name": "n8n-nodes-keboola",
+  "name": "@keboola/n8n-nodes-keboola",
   "version": "0.1.0",
   "description": "n8n node to interact with Keboola Storage APIs & MCP Server",
   "keywords": [
-    "n8n-community-node-package"
+    "n8n",
+    "keboola",
+    "integration",
+    "nodes"
   ],
+  "type": "commonjs",
   "license": "MIT",
-  "homepage": "https://www.keboola.com",
-  "author": {
-    "name": "Radek Tomasek",
-    "email": "radek.tomasek@keboola.com"
-  },
+  "homepage": "https://github.com/keboola/n8n-nodes-keboola#readme",
+  "author": "Keboola",
   "repository": {
     "type": "git",
     "url": "https://github.com/keboola/n8n-nodes-keboola.git"
   },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "bugs": {
+    "url": "https://github.com/keboola/n8n-nodes-keboola/issues"
+  },
   "engines": {
     "node": ">=20.15"
   },
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
-    "build": "npx rimraf dist && tsc && gulp build:icons",
+    "build": "rimraf dist && tsc && gulp build:icons",
     "dev": "tsc --watch",
     "format": "prettier nodes credentials --write",
     "lint": "eslint nodes credentials package.json",
     "lintfix": "eslint nodes credentials package.json --fix",
-    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
+    "prepack": "npm run build",
+    "prepublishOnly": "npm run lint -c .eslintrc.prepublish.js nodes credentials package.json",
+    "changeset": "changeset"
   },
-  "files": [
-    "dist"
-  ],
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
@@ -40,12 +53,14 @@
     ]
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.7",
     "@types/node": "^24.0.13",
     "@typescript-eslint/parser": "~8.32.0",
     "eslint": "^8.57.0",
     "eslint-plugin-n8n-nodes-base": "^1.16.3",
     "gulp": "^5.0.0",
     "prettier": "^3.5.3",
+    "rimraf": "^6.0.1",
     "typescript": "^5.8.2"
   },
   "peerDependencies": {
@@ -53,5 +68,9 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.844.0"
+  },
+  "overrides": {
+    "axios": "^1.12.0",
+    "form-data": "^4.0.4"
   }
 }
