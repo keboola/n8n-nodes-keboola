@@ -31,6 +31,7 @@ export const keboolaNodeDescription: INodeProperties[] = [
 		displayName: 'Resource',
 		name: 'resource',
 		type: 'options',
+		noDataExpression: true,
 		options: [{ name: 'Table', value: 'table' }],
 		default: 'table',
 		required: true,
@@ -39,6 +40,7 @@ export const keboolaNodeDescription: INodeProperties[] = [
 		displayName: 'Operation',
 		name: 'operation',
 		type: 'options',
+		noDataExpression: true,
 		displayOptions: {
 			show: {
 				resource: ['table'],

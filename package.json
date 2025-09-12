@@ -2,16 +2,27 @@
   "name": "@keboola/n8n-nodes-keboola",
   "version": "0.1.0",
   "description": "n8n node to interact with Keboola Storage APIs & MCP Server",
+  "author": {
+    "name": "Keboola",
+    "email": "support@keboola.com",
+    "url": "https://www.keboola.com"
+  },
+  "contributors": [
+    {
+      "name": "Radek Tomasek",
+      "email": "radek.tomasek@keboola.com"
+    }
+  ],
   "keywords": [
     "n8n",
     "keboola",
     "integration",
-    "nodes"
+    "nodes",
+    "n8n-community-node-package"
   ],
   "type": "commonjs",
   "license": "MIT",
   "homepage": "https://github.com/keboola/n8n-nodes-keboola#readme",
-  "author": "Keboola",
   "repository": {
     "type": "git",
     "url": "https://github.com/keboola/n8n-nodes-keboola.git"
