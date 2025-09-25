@@ -2,7 +2,7 @@
 	"node": "n8n-nodes-base.keboola",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
-	"categories": ["ETL", "Data integration"],
+	"categories": ["ETL", "Data integration", "Data automation"],
 	"resources": {
 		"primaryDocumentation": [
 			{

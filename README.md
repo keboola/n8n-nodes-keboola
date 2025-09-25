@@ -87,14 +87,14 @@ n8n start
 
 The Keboola node currently supports three types of operations:
 
-- **Data download**
+- **Data Export**
 
 Extracts data from a Keboola table into your n8n workflow.
 	- Parameters: Credential, Table ID
 	
 <img src="./docs/03-kbc-download.png" alt="An example of data download with Keboola Node in n8n" />
 
-- **Data upload**
+- **Data Import**
 
 Uploads data from your workflow into a Keboola table.
 	- Parameters: Bucket Stage, Bucket Name, Table Name, Primary Key(s), Import Mode
@@ -111,10 +111,10 @@ The node uses **API Key authentication**.
 
 When creating a credential in n8n, select your Keboola stack region:
 
-- US Default (AWS): `https://connection.keboola.com`
-- EU Central (AWS): `https://connection.eu-central-1.keboola.com`
-- EU North (Azure): `https://connection.north-europe.azure.keboola.com`
-- US East (GCP): `https://connection.us-east4.gcp.keboola.com`
+- `https://connection.keboola.com` (Stack: AWS, Region: us-east-1)
+- `https://connection.eu-central-1.keboola.com` (Stack: AWS, Region: eu-central-1)
+- `https://connection.north-europe.azure.keboola.com` (Stack: Azure, Region: north-europe)
+- `https://connection.us-east4.gcp.keboola.com` (Stack: US East, Region: us-east4)
 
 <img src="./docs/02-auth-configuration.png" alt="Auth Configuration for Keboola Token API in n8n" />
 
@@ -129,8 +129,8 @@ This node has been tested with n8n version **1.57.0** and newer.
 1. Create a new workflow in n8n.
 2. Add the **Keboola node**.
 3. Select an operation:
-	- **Data download** to pull a table.
-	- **Data upload** to write into Keboola.
+	- **Data Export** to pull a table.
+	- **Data Import** to write into Keboola.
 	- **Custom API Call** for advanced use.
 4. Configure the parameters.
 5. Connect with other nodes (e.g., Google Sheets, Slack, HTTP).

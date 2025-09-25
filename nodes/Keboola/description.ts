@@ -6,11 +6,11 @@ export const keboolaNodeDescription: INodeProperties[] = [
 		name: 'authentication',
 		type: 'options',
 		noDataExpression: true,
-		default: 'keboolaTokenApi',
+		default: 'keboolaStorageApi',
 		options: [
 			{
 				name: 'API Token',
-				value: 'keboolaTokenApi',
+				value: 'keboolaStorageApi',
 			},
 		],
 	},
@@ -49,15 +49,15 @@ export const keboolaNodeDescription: INodeProperties[] = [
 		options: [
 			{
 				name: 'Extract',
-				action: 'Data download',
+				action: 'Data export',
 				value: 'extract',
-				description: 'Download table data',
+				description: 'Export data from a keboola project',
 			},
 			{
 				name: 'Upload',
-				action: 'Data upload',
+				action: 'Data import',
 				value: 'upload',
-				description: 'Upload data to a table',
+				description: 'Import data to a keboola project',
 			},
 		],
 		default: 'extract',

@@ -60,7 +60,7 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/KeboolaTokenApi.credentials.js"
+      "dist/credentials/KeboolaStorageApi.credentials.js"
     ],
     "nodes": [
       "dist/nodes/Keboola/Keboola.node.js"
@@ -83,7 +83,8 @@
     "n8n-workflow": "*"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.844.0"
+    "@aws-sdk/client-s3": "^3.844.0",
+    "zod": "^4.1.11"
   },
   "overrides": {
     "axios": "^1.12.0",

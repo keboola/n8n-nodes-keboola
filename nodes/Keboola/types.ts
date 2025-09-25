@@ -51,6 +51,7 @@ export const TableDetailSchema = z.object({
 	columns: z.array(z.string()),
 	columnsMetadata: z
 		.record(
+			z.string(),
 			z.object({
 				KBC: z
 					.object({
@@ -103,7 +104,18 @@ export const FileMetadataSchema = z.object({
 		})
 		.optional(),
 
-	credentials: z.record(z.any()).optional(),
+	credentials: z
+		.object({
+			access_token: z.string().optional(),
+			AccessKeyId: z.string().optional(),
+			SecretAccessKey: z.string().optional(),
+			SessionToken: z.string().optional(),
+			accessKeyId: z.string().optional(),
+			secretAccessKey: z.string().optional(),
+			sessionToken: z.string().optional(),
+		})
+		.catchall(z.unknown())
+		.optional(),
 
 	awsCredentials: z
 		.object({
@@ -162,7 +174,7 @@ export const ImportTableRequestSchema = z.object({
 export const ErrorResponseSchema = z.object({
 	error: z.string(),
 	code: z.string().optional(),
-	context: z.record(z.any()).optional(),
+	context: z.record(z.string(), z.any()).optional(),
 	exceptionId: z.string().optional(),
 });
 

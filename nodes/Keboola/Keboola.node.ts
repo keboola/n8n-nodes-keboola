@@ -6,7 +6,6 @@ import type {
 } from 'n8n-workflow';
 
 import { NodeConnectionType } from 'n8n-workflow';
-
 import { keboolaNodeDescription } from './description';
 import { keboolaNodeExecution } from './execution';
 
@@ -27,11 +26,11 @@ export class Keboola implements INodeType {
 		usableAsTool: true,
 		credentials: [
 			{
-				name: 'keboolaTokenApi',
+				name: 'keboolaStorageApi',
 				required: true,
 				displayOptions: {
 					show: {
-						authentication: ['keboolaTokenApi'],
+						authentication: ['keboolaStorageApi'],
 					},
 				},
 			},
