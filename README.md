@@ -1,48 +1,171 @@
-![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
+# n8n Nodes – Keboola Integration
 
-# n8n-nodes-starter
+This is an n8n community node that integrates Keboola with your n8n workflows, so you can automate data pipelines, upload and download tables, and connect Keboola to hundreds of other services through n8n.
 
-This repo contains example nodes to help you get started building your own custom integrations for [n8n](https://n8n.io). It includes the node linter and other dependencies.
+[Keboola](https://keboola.com) is a data platform for building and running data pipelines, while [n8n](https://n8n.io) is a fair-code licensed workflow automation tool. Together, they allow you to orchestrate data flows end-to-end with minimal effort.
 
-To make your custom node available to the community, you must create it as an npm package, and [submit it to the npm registry](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry).
+## Table of Contents
 
-If you would like your node to be available on n8n cloud you can also [submit your node for verification](https://docs.n8n.io/integrations/creating-nodes/deploy/submit-community-nodes/).
+- [Installation (self-hosted)](#installation-self-hosted)
+- [Installation for development and contributing](#installation-for-development-and-contributing)
+- [Operations](#operations)
+- [Credentials](#credentials)
+- [Compatibility](#compatibility)
+- [Usage](#usage)
+- [Resources](#resources)
+- [Release](#release)
+- [Version History](#version-history)
+- [Troubleshooting](#troubleshooting)
 
-## Prerequisites
+## Installation (self-hosted)
 
-You need the following installed on your development machine:
+To install the Keboola community node directly from the n8n Editor UI:
 
-* [git](https://git-scm.com/downloads)
-* Node.js and npm. Minimum version Node 20. You can find instructions on how to install both using nvm (Node Version Manager) for Linux, Mac, and WSL [here](https://github.com/nvm-sh/nvm). For Windows users, refer to Microsoft's guide to [Install NodeJS on Windows](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).
-* Install n8n with:
-  ```
-  npm install n8n -g
-  ```
-* Recommended: follow n8n's guide to [set up your development environment](https://docs.n8n.io/integrations/creating-nodes/build/node-development-environment/).
+1. Open your n8n instance.
+2. Go to **Settings → Community Nodes**.
+3. Select **Install a community node**.
+4. Enter the npm package name: `@keboola/n8n-nodes-keboola`
+5. Accept the community node disclaimer and confirm installation.
 
-## Using this starter
+<img src="./docs/01-self-hosted-installation.png" alt="Install Keboola Node for Self-hosted n8n" />
 
-These are the basic steps for working with the starter. For detailed guidance on creating and publishing nodes, refer to the [documentation](https://docs.n8n.io/integrations/creating-nodes/).
+The Keboola node is now available in your workflows.
 
-1. [Generate a new repository](https://github.com/n8n-io/n8n-nodes-starter/generate) from this template repository.
-2. Clone your new repo:
-   ```
-   git clone https://github.com/<your organization>/<your-repo-name>.git
-   ```
-3. Run `npm i` to install dependencies.
-4. Open the project in your editor.
-5. Browse the examples in `/nodes` and `/credentials`. Modify the examples, or replace them with your own nodes.
-6. Update the `package.json` to match your details.
-7. Run `npm run lint` to check for errors or `npm run lintfix` to automatically fix errors when possible.
-8. Test your node locally. Refer to [Run your node locally](https://docs.n8n.io/integrations/creating-nodes/test/run-node-locally/) for guidance.
-9. Replace this README with documentation for your node. Use the [README_TEMPLATE](README_TEMPLATE.md) to get started.
-10. Update the LICENSE file to use your details.
-11. [Publish](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) your package to npm.
+## Installation for development and contributing
 
-## More information
+If you want to contribute to this project, you can link the node to your local n8n instance.
 
-Refer to our [documentation on creating nodes](https://docs.n8n.io/integrations/creating-nodes/) for detailed information on building your own nodes.
+### Prerequisites
 
-## License
+- [Node.js](https://nodejs.org/en/download) (recommended v20+)
 
-[MIT](https://github.com/n8n-io/n8n-nodes-starter/blob/master/LICENSE.md)
+### Steps
+
+1. **Initialize n8n locally** 
+
+Install and start n8n (if not already installed): 
+
+```bash
+npm install -g n8n
+n8n start
+```
+
+This will create the `~/.n8n` directory.
+
+2. **Clone and build the node**
+
+```bash
+git clone git@github.com:keboola/n8n-nodes-keboola.git # or https://github.com/keboola/n8n-nodes-keboola.git
+cd n8n-nodes-keboola
+npm install
+npm run build
+```
+
+3. **Link the custom node to n8n**
+
+```bash
+mkdir -p ~/.n8n/custom
+ln -s /full/path/to/n8n-nodes-keboola ~/.n8n/custom/n8n-nodes-keboola
+```
+
+4. **Restart n8n**
+
+```bash
+n8n start
+```
+
+5. **Making changes**
+
+If you modify the node, rebuild and restart:
+
+```bash
+pnpm run build
+n8n start
+```
+
+## Operations
+
+The Keboola node currently supports three types of operations:
+
+- **Data Export**
+
+Extracts data from a Keboola table into your n8n workflow.
+	- Parameters: Credential, Table ID
+	
+<img src="./docs/03-kbc-download.png" alt="An example of data download with Keboola Node in n8n" />
+
+- **Data Import**
+
+Uploads data from your workflow into a Keboola table.
+	- Parameters: Bucket Stage, Bucket Name, Table Name, Primary Key(s), Import Mode
+	
+<img src="./docs/04-kbc-upload.png" alt="An example of data upload with Keboola Node in n8n" />
+
+- **Custom API Call**
+
+For advanced use cases, you can call any Keboola Storage API endpoint directly.
+
+## Credentials
+
+The node uses **API Key authentication**.
+
+When creating a credential in n8n, select your Keboola stack region:
+
+- `https://connection.keboola.com` (Stack: AWS, Region: us-east-1)
+- `https://connection.eu-central-1.keboola.com` (Stack: AWS, Region: eu-central-1)
+- `https://connection.north-europe.azure.keboola.com` (Stack: Azure, Region: north-europe)
+- `https://connection.us-east4.gcp.keboola.com` (Stack: US East, Region: us-east4)
+
+<img src="./docs/02-auth-configuration.png" alt="Auth Configuration for Keboola Token API in n8n" />
+
+Then provide your **Keboola Storage API Token** (create under Project Settings → API Tokens in Keboola).
+
+## Compatibility
+
+This node has been tested with n8n version **1.57.0** and newer.
+
+## Usage
+
+1. Create a new workflow in n8n.
+2. Add the **Keboola node**.
+3. Select an operation:
+	- **Data Export** to pull a table.
+	- **Data Import** to write into Keboola.
+	- **Custom API Call** for advanced use.
+4. Configure the parameters.
+5. Connect with other nodes (e.g., Google Sheets, Slack, HTTP).
+6. Execute the workflow.
+
+<img src="./docs/05-workflow-overview.png" alt="Workflow example using Keboola Node in n8n" />
+
+## Resources
+
+- [Keboola API Documentation](https://developers.keboola.com/overview/api)
+- [n8n Documentation](https://docs.n8n.io)
+- [n8n Community Nodes Guide](https://docs.n8n.io/integrations/#community-nodes)
+- [n8n Keboola Documentation](https://help.keboola.com/external-integrations/n8n)
+- [NPM Package](https://www.npmjs.com/package/@keboola/n8n-nodes-keboola)
+- [GitHub Repository](https://github.com/keboola/n8n-nodes-keboola)
+
+## Release
+
+This project uses GitHub Actions to publish releases to npm. To create a release:
+
+1. Ensure `main` is up to date.
+2. Bump the version in `package.json` according to [semver](https://semver.org).
+3. Commit and push.
+4. Create a GitHub Release with the new version tag (e.g., `v1.0.0`).
+
+The CI workflow will build, test, and publish automatically.
+
+## Version History
+
+See [Releases](https://github.com/keboola/n8n-nodes-keboola/releases).
+
+## Troubleshooting
+
+- **Authentication errors**: Verify your API token and stack region are correct.
+- **Operation errors**: Double-check bucket names, table IDs, or job IDs.
+- **Node not available**: Confirm the Keboola node is installed from the Community Nodes registry. Currently only self-hosted n8n is supported.
+
+For additional help, open an issue in this repo or contact [Keboola Support](https://help.keboola.com).
