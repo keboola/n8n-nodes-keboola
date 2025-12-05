@@ -79,7 +79,7 @@ n8n start
 If you modify the node, rebuild and restart:
 
 ```bash
-pnpm run build
+npm run build
 n8n start
 ```
 
@@ -154,9 +154,10 @@ This project uses GitHub Actions to publish releases to npm. To create a release
 1. Ensure `main` is up to date.
 2. Bump the version in `package.json` according to [semver](https://semver.org).
 3. Commit and push.
-4. Create a GitHub Release with the new version tag (e.g., `v1.0.0`).
+4. Create a GitHub Release with the new version tag (e.g., `v0.2.0`).
 
-The CI workflow will build, test, and publish automatically.
+The CI workflow will build and test the package. The publishing is currently done manually as the policies 
+related to company wide npm token policies has been changed.
 
 ## Version History
 

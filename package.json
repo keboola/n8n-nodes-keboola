@@ -28,8 +28,7 @@
 		"url": "https://github.com/keboola/n8n-nodes-keboola.git"
 	},
 	"publishConfig": {
-		"access": "public",
-		"provenance": true
+		"access": "public"
 	},
 	"bugs": {
 		"url": "https://github.com/keboola/n8n-nodes-keboola/issues"
