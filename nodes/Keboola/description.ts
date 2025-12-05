@@ -22,7 +22,7 @@ export const keboolaNodeDescription: INodeProperties[] = [
 		required: true,
 		displayOptions: {
 			show: {
-				authentication: ['keboolaTokenApi'],
+				authentication: ['keboolaStorageApi'],
 			},
 		},
 		credentialTypes: ['has:authenticate'],

@@ -128,7 +128,7 @@ export function extractAwsRegion(url: string): string {
 export async function extractCredentials(
 	executeFunctions: IExecuteFunctions,
 ): Promise<KeboolaCredentials> {
-	return await executeFunctions.getCredentials('keboolaTokenApi');
+	return await executeFunctions.getCredentials('keboolaStorageApi');
 }
 
 export function extractExtractParams(executeFunctions: IExecuteFunctions): ExtractParams {
