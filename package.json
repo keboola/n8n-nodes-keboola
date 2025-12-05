@@ -71,7 +71,7 @@
 		"@types/node": "^24.0.13",
 		"@typescript-eslint/parser": "~8.48.1",
 		"@vitest/coverage-v8": "^4.0.15",
-		"eslint": "^9.39.1",
+		"eslint": "^8.57.0",
 		"eslint-plugin-n8n-nodes-base": "^1.16.4",
 		"gulp": "^5.0.1",
 		"prettier": "^3.7.4",
