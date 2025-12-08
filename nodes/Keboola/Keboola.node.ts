@@ -5,7 +5,6 @@ import type {
 	INodeTypeDescription,
 } from 'n8n-workflow';
 
-import { NodeConnectionType } from 'n8n-workflow';
 import { keboolaNodeDescription } from './description';
 import { keboolaNodeExecution } from './execution';
 
@@ -21,8 +20,8 @@ export class Keboola implements INodeType {
 		defaults: {
 			name: 'Keboola',
 		},
-		inputs: [NodeConnectionType.Main],
-		outputs: [NodeConnectionType.Main],
+		inputs: ['main'],
+		outputs: ['main'],
 		usableAsTool: true,
 		credentials: [
 			{
